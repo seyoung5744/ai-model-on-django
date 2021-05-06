@@ -18,6 +18,8 @@ import numpy as np
 import sys
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
+from yolov4.apps import Yolov4Config
+
 
 FLAGS (sys.argv)
 # flag에 관하여 https://daeson.tistory.com/256
@@ -55,7 +57,9 @@ def detect(path):
     if FLAGS.framework == 'tflite':
         interpreter = tf.lite.Interpreter(model_path=FLAGS.weights)
     else:
-        saved_model_loaded = tf.saved_model.load(FLAGS.weights, tags=[tag_constants.SERVING])
+        # saved_model_loaded = tf.saved_model.load(FLAGS.weights, tags=[tag_constants.SERVING])
+
+        saved_model_loaded = Yolov4Config.saved_model_loaded
 
     # loop through images in list and run Yolov4 model on each
     for count, image_path in enumerate(images, 1):

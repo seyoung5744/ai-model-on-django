@@ -27,8 +27,8 @@ def uimage(request):
 
 
 def dface(request):
-    form = ImageUploadForm(request.POST, request.FILES)
     if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
@@ -38,6 +38,6 @@ def dface(request):
             # opencv_dface(settings.MEDIA_ROOT_URL + imageURL)
             detect(settings.MEDIA_ROOT_URL + imageURL)
             return render(request, 'yolov4/dface.html', {'form': form, 'post': post})
-    else:
+    else: # 데이터를 입력받는 form
         form = ImageUploadForm()
     return render(request, 'yolov4/dface.html', {'form': form})

@@ -11,4 +11,4 @@ class UploadImageForm(forms.Form):
 class ImageUploadForm(forms.ModelForm):
   class Meta:
       model = ImageUploadModel
-      fields = ('description', 'document' )
+      fields = ('description', 'document' ) # fields는 모델 클래스의 필드들 중 일부만 폼 클래스에서 사용하고자 할 때 지정하는 옵션
